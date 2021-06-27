@@ -1,0 +1,5 @@
+---
+CableReady:
+  Enabled: true
+  Include:
+    - "**/*.rb"
