@@ -5,7 +5,7 @@ RSpec.describe RuboCop::Cop::CableReady::UnusedCableReadyCall, :config do
     expect_offense(<<~RUBY)
       class Foo
         include CableReady::Broadcaster
- 
+
         def bar
           cable_ready
           ^^^^^^^^^^^ unused `cable_ready` call
