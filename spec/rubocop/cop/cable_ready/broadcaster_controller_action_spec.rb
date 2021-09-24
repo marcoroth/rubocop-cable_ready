@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require "spec_helper"
+
 RSpec.describe RuboCop::Cop::CableReady::BroadcasterControllerAction, :config do
   it "registers an offense for a controller mixing in Broadcaster" do
     expect_offense(<<~RUBY)
