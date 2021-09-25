@@ -1,5 +1,10 @@
 ---
-CableReady:
+CableReady/BroadcasterControllerAction:
+  Enabled: true
+  Include:
+    - "app/controllers/**/*.rb"
+
+CableReady/UnusedCableReadyCall:
   Enabled: true
   Include:
     - "**/*.rb"
