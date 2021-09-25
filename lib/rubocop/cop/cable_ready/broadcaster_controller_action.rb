@@ -10,14 +10,12 @@ module RuboCop
           (const (const nil? :ActionController) :Base)
         PATTERN
 
-        def on_send(definition)
-          return if definition.method_name != :include
+        def on_send(node)
+          return if node.method_name != :include
 
-          call = definition.ancestors.first
+          return unless node.ancestors.any? { |ancestor| action_controller_base_class?(ancestor) }
 
-          return unless action_controller_base_class?(call)
-
-          add_offense(definition)
+          add_offense(node)
         end
       end
     end

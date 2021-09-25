@@ -12,6 +12,18 @@ RSpec.describe RuboCop::Cop::CableReady::BroadcasterControllerAction, :config do
     RUBY
   end
 
+  it "registers an offense for an indirect subclass of ActionController::Base" do
+    expect_offense(<<~RUBY)
+      class ApplicationController < ActionController::Base
+      end
+
+      class BarsController < ApplicationController
+        include CableReady::Broadcaster
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ CableReady::Broadcaster should not be used in a Rails controller action
+      end
+    RUBY
+  end
+
   it "doesn't register an offense for a model mixing in Broadcaster" do
     expect_no_offenses(<<~RUBY)
       class Foo < ActiveRecord::Base
