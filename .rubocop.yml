@@ -20,3 +20,7 @@ Layout/LineLength:
 Naming/FileName:
   Exclude:
     - lib/rubocop-cable_ready.rb
+
+Metrics/BlockLength:
+  Exclude:
+    - spec/**/*.rb
