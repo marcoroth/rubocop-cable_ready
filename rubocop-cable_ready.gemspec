@@ -4,7 +4,7 @@ require_relative "lib/rubocop/cable_ready/version"
 
 Gem::Specification.new do |spec|
   spec.name          = "rubocop-cable_ready"
-  spec.version       = Rubocop::CableReady::VERSION
+  spec.version       = RuboCop::CableReady::VERSION
   spec.authors       = ["Marco Roth"]
   spec.email         = ["marco.roth@hey.com"]
 

@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require "spec_helper"
+
 RSpec.describe RuboCop::Cop::CableReady::UnusedCableReadyCall, :config do
   it "registers an offense for an unused cable_ready call" do
     expect_offense(<<~RUBY)
