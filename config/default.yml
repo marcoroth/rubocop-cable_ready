@@ -1,4 +1,9 @@
 ---
+CableReady/ApplicationRecordEnableUpdates:
+  Enabled: true
+  Include:
+    - "app/models/**/*.rb"
+
 CableReady/BroadcasterControllerAction:
   Enabled: true
   Include:
