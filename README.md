@@ -58,6 +58,100 @@ RuboCop::RakeTask.new do |task|
 end
 ```
 
+## Cops
+
+#### `CableReady/ApplicationRecordEnableUpdates`
+
+| Enabled by default | Supports autocorrection | Include | Version Added | Version Changed |
+| --- | --- | --- | --- | --- |
+| true | No | `app/models/**/*.rb` | 0.2.0 | 0.2.0 |
+
+The `enable_cable_ready_updates` class method shouldn't be called in `ApplicationRecord`. Instead call `enable_cable_ready_updates` in every model you want to track and broadcast updates.
+
+
+##### Examples
+
+```ruby
+# bad
+
+class ApplicationRecord < ActiveRecord::Base
+  include CableReady::Updatable
+
+  enable_cable_ready_updates on: :update
+end
+
+
+# good
+
+class Post < ApplicationRecord
+  include CableReady::Updatable
+
+  enable_cable_ready_updates on: :update
+end
+
+
+# good
+
+class ApplicationRecord < ActiveRecord::Base
+  include CableReady::Updatable
+end
+
+class Post < ApplicationRecord
+  enable_cable_ready_updates on: :update
+end
+```
+
+----
+
+#### `CableReady/BroadcasterControllerAction`
+
+| Enabled by default | Supports autocorrection | Include | Version Added | Version Changed |
+| --- | --- | --- | --- | --- |
+| false | No | `app/controllers/**/*.rb` | 0.2.0 | 0.2.0 |
+
+It's discouraged to broadcast CableReady broadcasts from Controller actions.
+
+##### Examples
+
+```ruby
+# bad
+
+def create
+  cable_ready[UserChannel]
+    .append(selector: "...", html: "...")
+    .broadcast
+end
+
+
+# good
+
+def create
+end
+```
+
+----
+
+#### `CableReady/UnusedCableReadyCall`
+
+| Enabled by default | Supports autocorrection | Include | Version Added | Version Changed |
+| --- | --- | --- | --- | --- |
+| true | No | `app/**/*.rb` | 0.1.0 | 0.1.0 |
+
+The `cable_ready` method shouldn't be called without being followed by an operation.
+
+##### Examples
+
+```ruby
+# bad
+
+cable_ready
+
+
+# good
+
+cable_ready.inner_html(...)
+```
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake test` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
