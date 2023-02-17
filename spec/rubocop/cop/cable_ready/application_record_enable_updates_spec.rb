@@ -3,7 +3,7 @@
 require "spec_helper"
 
 RSpec.describe RuboCop::Cop::CableReady::ApplicationRecordEnableUpdates, :config do
-  it "registers an offense for the global ApplicationRecord model calling the enable_cable_ready_updates class method" do
+  it "registers an offense for the global ApplicationRecord model calling the enable_cable_ready_updates class method" do # rubocop:disable Layout/LineLength
     expect_offense(<<~RUBY)
       class ApplicationRecord < ActiveRecord::Base
         include CableReady::Updatable
