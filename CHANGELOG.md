@@ -1,5 +1,3 @@
-## [Unreleased]
+## Changelog
 
-## [0.1.0] - 2021-06-28
-
-- Initial release
+Please see [GitHub](https://github.com/marcoroth/rubocop-cable_ready/releases) for detailed changelogs.
